@@ -50,6 +50,23 @@ app.register((app, options, done) => {
       res.send({ anything: "meaningfull" });
     },
   });
+
+  app.get("/listings", {
+    schema: {
+      tags: ["Default"],
+      response: {
+        200: {
+          type: "object",
+          properties: {
+            anything: { type: "string" },
+          },
+        },
+      },
+    },
+    handler: (req, res) => {
+      res.send({ anything: "meaningfull" });
+    },
+  });
   done();
 });
 
