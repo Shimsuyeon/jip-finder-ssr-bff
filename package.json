@@ -7,7 +7,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fastify": "node --loader ts-node/esm src/app/bff/server.ts"
   },
   "dependencies": {
     "@fastify/cors": "^10.0.2",

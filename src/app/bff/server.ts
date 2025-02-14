@@ -57,7 +57,7 @@ app.listen(
   {
     port: 5000,
   },
-  (err, address) => {
+  (err) => {
     if (err) {
       console.error(err);
       process.exit(1);
