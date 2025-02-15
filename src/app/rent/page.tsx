@@ -1,70 +1,91 @@
 "use client";
-
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { FrontendRentSingleMultiFamily } from "../bff/types/rent,types";
+import { useState, useEffect } from "react";
+import CommonRentItem from "./modules/CommonRentItem";
+import SpecificRentDetails from "./modules/SpecificRentDetails";
+import {
+  FrontendRentSingleMultiFamily,
+  FrontendRentOfficetel,
+  FrontendRentApartment,
+  FrontendRentMultiHousehold,
+} from "../bff/types/rent,types";
+const API_URL = "http://localhost:5000/rent/all";
 
 export default function RentPage() {
-  const [estates, setEstates] = useState<FrontendRentSingleMultiFamily[]>([]);
+  type RentData = {
+    singleMultiFamily: FrontendRentSingleMultiFamily[];
+    officetel: FrontendRentOfficetel[];
+    apartment: FrontendRentApartment[];
+    multiHousehold: FrontendRentMultiHousehold[];
+  };
+
+  const [data, setData] = useState<RentData>({
+    singleMultiFamily: [],
+    officetel: [],
+    apartment: [],
+    multiHousehold: [],
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedType, setSelectedType] =
+    useState<keyof RentData>("singleMultiFamily");
 
   useEffect(() => {
-    const fetchEstates = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/rent/single-multi-family"
-        );
-        if (!response.ok) {
-          throw new Error("네트워크 응답이 실패했습니다");
-        }
-        const data: FrontendRentSingleMultiFamily[] = await response.json();
-        setEstates(data);
-      } catch (error) {
-        setError("데이터를 가져오는 중 문제가 발생했습니다.");
-        console.error("API 요청 실패:", error);
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error("네트워크 오류");
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(`데이터를 불러오는 중 오류가 발생했습니다.: ${err}`);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchEstates();
+    fetchData();
   }, []);
 
-  if (loading) {
-    return <p>데이터를 불러오는 중...</p>;
-  }
+  if (loading) return <p>데이터를 불러오는 중...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
 
-  if (error) {
-    return <p className="text-red-500">{error}</p>;
-  }
+  const categories = {
+    singleMultiFamily: "단독/다가구",
+    officetel: "오피스텔",
+    apartment: "아파트",
+    multiHousehold: "다세대주택",
+  };
+
+  const rents = data[selectedType as keyof RentData];
 
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">내집(이 될 예정😏) 시세 🏠</h2>
-      {estates.length === 0 ? (
+
+      {/* 탭 버튼 */}
+      <div className="flex gap-4 mb-4">
+        {Object.keys(categories).map((key) => (
+          <button
+            key={key}
+            className={`px-4 py-2 rounded-lg ${
+              selectedType === key ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+            onClick={() => setSelectedType(key as keyof RentData)}
+          >
+            {categories[key as keyof typeof categories]}
+          </button>
+        ))}
+      </div>
+
+      {/* 선택한 타입의 부동산 데이터 표시 */}
+      {rents.length === 0 ? (
         <p>데이터가 없습니다.</p>
       ) : (
-        <ul className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {estates.map((estate) => (
-              <Link key={estate.id} href={`/rent/${estate.id}`}>
-                <li key={estate.id} className="border p-4 rounded-lg shadow">
-                  <h3 className="text-xl font-semibold">
-                    {estate.location.district}
-                  </h3>
-                  <h3 className="text-lg font-medium">
-                    💰 월세: {estate.price.monthlyRent} / 보증금:{" "}
-                    {estate.price.deposit}
-                  </h3>
-                  <h3 className="text-lg font-medium">
-                    🛏️ 면적: {estate.buildingInfo.area}㎡ (
-                    {estate.buildingInfo.type})
-                  </h3>
-                </li>
-              </Link>
-            ))}
-          </div>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {rents.map((rent) => (
+            <CommonRentItem key={rent.id} rent={rent}>
+              <SpecificRentDetails rent={rent} type={selectedType} />
+            </CommonRentItem>
+          ))}
         </ul>
       )}
     </div>

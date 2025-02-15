@@ -155,7 +155,7 @@ export async function rentRoutes(app: FastifyInstance) {
     },
   });
 
-  app.get("/rent/multiHousehold", {
+  app.get("/rent/multi-household", {
     schema: {
       tags: ["Rents"],
       response: {
@@ -257,7 +257,7 @@ export async function rentRoutes(app: FastifyInstance) {
               district: String(item.umdNm),
             },
             contract: {
-              date: `${item.dealYear}${item.dealMonth}${item.dealDay}`,
+              date: `${item.dealYear}.${item.dealMonth}.${item.dealDay}`,
               term: String(item.contractTerm),
               type: String(item.contractType),
             },
@@ -282,7 +282,7 @@ export async function rentRoutes(app: FastifyInstance) {
               )}`,
             },
             contract: {
-              date: `${item.dealYear}${item.dealMonth}${item.dealDay}`,
+              date: `${item.dealYear}.${item.dealMonth}.${item.dealDay}`,
               term: String(item.contractTerm),
               type: String(item.contractType),
             },
@@ -305,7 +305,7 @@ export async function rentRoutes(app: FastifyInstance) {
               district: `${String(item.umdNm)} ${String(item.jibun)}`,
             },
             contract: {
-              date: `${item.dealYear}${item.dealMonth}${item.dealDay}`,
+              date: `${item.dealYear}.${item.dealMonth}.${item.dealDay}`,
               term: String(item.contractTerm),
               type: String(item.contractType),
             },
@@ -329,18 +329,12 @@ export async function rentRoutes(app: FastifyInstance) {
               district: `${String(item.umdNm)} ${String(item.jibun)}`,
             },
             contract: {
-              date: `${item.dealYear}${item.dealMonth}${item.dealDay}`,
+              date: `${item.dealYear}.${item.dealMonth}.${item.dealDay}`,
               term: String(item.contractTerm),
               type: String(item.contractType),
             },
           }));
 
-        console.log(
-          transformedSingleMultiFamily,
-          transformedOfficetel,
-          transformedApartment,
-          transformedMultiHousehold
-        );
         // ✅ 모든 데이터를 하나의 JSON 객체로 응답
         res.send({
           singleMultiFamily: transformedSingleMultiFamily,
