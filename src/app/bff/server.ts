@@ -3,13 +3,30 @@ import { fastify } from "fastify";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import cors from "@fastify/cors";
-dotenv.config();
+import axios from "axios";
+import fastifyEnv from "@fastify/env";
+
+dotenv.config({ path: ".env" });
+dotenv.config({ path: ".env.secret", override: true });
 
 const app = fastify({ logger: false });
-
 await app.register(cors, {
   origin: "*",
 });
+app.register(fastifyEnv, {
+  schema: {
+    type: "object",
+    required: ["ServiceKey", "ESTATE_API_URL", "LAWD_CD", "DEAL_YMD"],
+    properties: {
+      ServiceKey: { type: "string" },
+      ESTATE_API_URL: { type: "string" },
+      LAWD_CD: { type: "string" },
+      DEAL_YMD: { type: "string" },
+    },
+  },
+  dotenv: true,
+});
+
 const swaggerOptions = {
   swagger: {
     info: {
@@ -58,13 +75,61 @@ app.register((app, options, done) => {
         200: {
           type: "object",
           properties: {
-            anything: { type: "string" },
+            data: {
+              type: "object",
+              properties: {
+                items: {
+                  type: "object",
+                  properties: {
+                    item: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          buildYear: { type: "string" },
+                          dealDay: { type: "string" },
+                          dealMonth: { type: "string" },
+                          dealYear: { type: "string" },
+                          deposit: { type: "string" },
+                          houseType: { type: "string" },
+                          monthlyRent: { type: "string" },
+                          totalFloorAr: { type: "string" },
+                          umdNm: { type: "string" },
+                        },
+                      },
+                    },
+                  },
+                },
+                numOfRows: { type: "string" },
+                pageNo: { type: "string" },
+                totalCount: { type: "string" },
+              },
+            },
           },
         },
       },
     },
-    handler: (req, res) => {
-      res.send({ anything: "meaningfull" });
+    handler: async (req, res) => {
+      try {
+        const apiUrl = `${process.env.ESTATE_API_URL}?ServiceKey=${process.env.ServiceKey}&LAWD_CD=${process.env.LAWD_CD}&DEAL_YMD=${process.env.DEAL_YMD}`;
+
+        const response = await axios({
+          method: "get",
+          url: apiUrl,
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        const responseData = response.data.response.body;
+
+        res.send({ data: responseData });
+      } catch (error) {
+        console.error("API Error:", error);
+        res.status(500).send({
+          error: `외부 API 호출에 실패했습니다. ${error}`,
+        });
+      }
     },
   });
   done();
