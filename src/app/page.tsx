@@ -11,7 +11,7 @@ export default function Home() {
       {/* ✅ listing 페이지로 이동하는 버튼 */}
       <Link href="/estates">
         <button className="px-6 py-3 bg-indigo-500 text-white rounded-lg shadow-md hover:bg-indigo-600 transition">
-          매물 리스트 보러가기
+          내집(후보) 시세 확인하기
         </button>
       </Link>
       <br />

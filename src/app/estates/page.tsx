@@ -54,7 +54,7 @@ export default function EstatePage() {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">내집(이 될 예정😏) 목록 🏠</h2>
+      <h2 className="text-2xl font-bold mb-4">내집(이 될 예정😏) 시세 🏠</h2>
       {estates.length === 0 ? (
         <p>데이터가 없습니다.</p>
       ) : (
