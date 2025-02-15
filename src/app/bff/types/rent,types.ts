@@ -152,7 +152,7 @@ export interface FrontendRentOfficetel {
     name: string; //offiNm
     area: string; //excluUseAr
     floor: string; //floor
-    buildYear: string; //buildYear
+    year: string; //buildYear
   };
   price: {
     deposit: string; //deposit
@@ -174,7 +174,7 @@ export interface FrontendRentApartment {
     name: string; //aptNm
     area: string; //excluUseAr
     floor: string; //floor
-    buildYear: string; //buildYear
+    year: string; //buildYear
   };
   price: {
     deposit: string; //deposit
@@ -196,7 +196,7 @@ export interface FrontendRentSingleMultiFamily {
   buildingInfo: {
     type: string; // houseType
     area: string; //totalFloorAr
-    buildYear: string; //buildYear
+    year: string; //buildYear
   };
   price: {
     deposit: string; //deposit
@@ -219,7 +219,7 @@ export interface FrontendRentMultiHousehold {
     name: string; //mhouseNm
     area: string; //execluUseAr
     floor: string; //floor
-    buildYear: string; //buildYear
+    year: string; //buildYear
   };
   price: {
     deposit: string; //deposit

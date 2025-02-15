@@ -1,5 +1,10 @@
 import { FastifyInstance } from "fastify";
-import { estateResponseSchema } from "../schemas/estate.schema";
+import {
+  rentResponseApartmentSchema,
+  rentResponseMultiHouseHoldSchema,
+  rentResponseOfficetelSchema,
+  rentResponseSingleMultiFamilySchema,
+} from "../schemas/rent.schema";
 import { RentService } from "../services/rent.service";
 import {
   FrontendRentMultiHousehold,
@@ -16,7 +21,7 @@ export async function rentRoutes(app: FastifyInstance) {
     schema: {
       tags: ["Rents"],
       response: {
-        200: estateResponseSchema,
+        200: rentResponseSingleMultiFamilySchema,
       },
     },
     handler: async (req, res) => {
@@ -31,7 +36,7 @@ export async function rentRoutes(app: FastifyInstance) {
             buildingInfo: {
               type: item.houseType,
               area: item.totalFloorAr,
-              buildYear: item.buildYear,
+              year: item.buildYear,
             },
             price: {
               deposit: item.deposit,
@@ -61,7 +66,7 @@ export async function rentRoutes(app: FastifyInstance) {
     schema: {
       tags: ["Rents"],
       response: {
-        200: estateResponseSchema,
+        200: rentResponseOfficetelSchema,
       },
     },
     handler: async (req, res) => {
@@ -77,7 +82,7 @@ export async function rentRoutes(app: FastifyInstance) {
               name: item.offiNm,
               area: item.excluUseAr,
               floor: item.floor,
-              buildYear: item.buildYear,
+              year: item.buildYear,
             },
             price: {
               deposit: item.deposit,
@@ -107,7 +112,7 @@ export async function rentRoutes(app: FastifyInstance) {
     schema: {
       tags: ["Rents"],
       response: {
-        200: estateResponseSchema,
+        200: rentResponseApartmentSchema,
       },
     },
     handler: async (req, res) => {
@@ -123,7 +128,7 @@ export async function rentRoutes(app: FastifyInstance) {
               name: item.aptNm,
               area: item.excluUseAr,
               floor: item.floor,
-              buildYear: item.buildYear,
+              year: item.buildYear,
             },
             price: {
               deposit: item.deposit,
@@ -153,7 +158,7 @@ export async function rentRoutes(app: FastifyInstance) {
     schema: {
       tags: ["Rents"],
       response: {
-        200: estateResponseSchema,
+        200: rentResponseMultiHouseHoldSchema,
       },
     },
     handler: async (req, res) => {
@@ -170,7 +175,7 @@ export async function rentRoutes(app: FastifyInstance) {
               name: item.mhouseNm,
               area: item.excluUseAr,
               floor: item.floor,
-              buildYear: item.buildYear,
+              year: item.buildYear,
             },
             price: {
               deposit: item.deposit,
