@@ -1,4 +1,4 @@
-export const listingResponseSchema = {
+export const estateResponseSchema = {
   type: "array",
   items: {
     type: "object",

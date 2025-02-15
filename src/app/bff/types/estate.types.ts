@@ -1,4 +1,4 @@
-export interface ListingItem {
+export interface EstateItem {
   buildYear: string;
   dealDay: string;
   dealMonth: string;
@@ -10,10 +10,10 @@ export interface ListingItem {
   umdNm: string;
 }
 
-export interface ListingResponse {
+export interface EstateResponse {
   data: {
     items: {
-      item: ListingItem[];
+      item: EstateItem[];
     };
     numOfRows: string;
     pageNo: string;
@@ -21,7 +21,7 @@ export interface ListingResponse {
   };
 }
 
-export interface FrontendListing {
+export interface FrontendEstate {
   id: string;
   buildingInfo: {
     year: string;
@@ -37,10 +37,10 @@ export interface FrontendListing {
   };
 }
 
-export interface FrontendListingResponse {
+export interface FrontendEstateResponse {
   data: {
     items: {
-      item: FrontendListing[];
+      item: FrontendEstate[];
     };
     numOfRows: string;
     pageNo: string;

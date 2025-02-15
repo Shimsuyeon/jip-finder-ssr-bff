@@ -1,9 +1,10 @@
-//src/app/bff/services/listing.service.ts
+//src/app/bff/services/estate.service.ts
 import axios from "axios";
-import { ListingResponse } from "../types/listing.types";
 
-export class ListingService {
-  static async getListings(): Promise<ListingResponse> {
+import { EstateResponse } from "../types/estate.types";
+
+export class EstateService {
+  static async getEsates(): Promise<EstateResponse> {
     const apiUrl = `${process.env.ESTATE_API_URL}?ServiceKey=${process.env.ServiceKey}&LAWD_CD=${process.env.LAWD_CD}&DEAL_YMD=${process.env.DEAL_YMD}`;
 
     try {

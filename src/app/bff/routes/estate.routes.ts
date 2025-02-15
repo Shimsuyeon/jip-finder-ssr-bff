@@ -1,22 +1,21 @@
 import { FastifyInstance } from "fastify";
-import { ListingService } from "../services/listing.service";
-import { FrontendListing } from "../types/listing.types";
-import { listingResponseSchema } from "../schemas/listing.schema";
+import { FrontendEstate } from "../types/estate.types";
+import { EstateService } from "../services/estate.service";
+import { estateResponseSchema } from "../schemas/estate.schema";
 
-export async function listingRoutes(app: FastifyInstance) {
-  app.get("/listings", {
+export async function estateRoutes(app: FastifyInstance) {
+  app.get("/estates", {
     schema: {
-      tags: ["Listings"],
+      tags: ["Estates"],
       response: {
-        200: listingResponseSchema,
+        200: estateResponseSchema,
       },
     },
     handler: async (req, res) => {
       try {
-        const rawData = await ListingService.getListings();
+        const rawData = await EstateService.getEsates();
 
-        // 🛠 데이터 가공 로직
-        const transformedData: FrontendListing[] = rawData.data.items.item.map(
+        const transformedData: FrontendEstate[] = rawData.data.items.item.map(
           (item, index) => ({
             id: `${item.dealYear}${item.dealMonth}${item.dealDay}-${index + 1}`,
             buildingInfo: {
