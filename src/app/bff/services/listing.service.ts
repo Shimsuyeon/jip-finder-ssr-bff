@@ -1,3 +1,4 @@
+//src/app/bff/services/listing.service.ts
 import axios from "axios";
 import { ListingResponse } from "../types/listing.types";
 
@@ -13,8 +14,9 @@ export class ListingService {
           Accept: "application/json",
         },
       });
+      const data = response.data.response.body;
 
-      return { data: response.data.response.body };
+      return { data: data };
     } catch (error) {
       throw new Error(`Failed to fetch listings: ${error}`);
     }

@@ -1,34 +1,29 @@
 export const listingResponseSchema = {
-  type: "object",
-  properties: {
-    data: {
-      type: "object",
-      properties: {
-        items: {
-          type: "object",
-          properties: {
-            item: {
-              type: "array",
-              items: {
-                type: "object",
-                properties: {
-                  buildYear: { type: "string" },
-                  dealDay: { type: "string" },
-                  dealMonth: { type: "string" },
-                  dealYear: { type: "string" },
-                  deposit: { type: "string" },
-                  houseType: { type: "string" },
-                  monthlyRent: { type: "string" },
-                  totalFloorAr: { type: "string" },
-                  umdNm: { type: "string" },
-                },
-              },
-            },
-          },
+  type: "array",
+  items: {
+    type: "object",
+    properties: {
+      id: { type: "string" },
+      buildingInfo: {
+        type: "object",
+        properties: {
+          year: { type: "string" },
+          type: { type: "string" },
+          area: { type: "string" },
         },
-        numOfRows: { type: "string" },
-        pageNo: { type: "string" },
-        totalCount: { type: "string" },
+      },
+      price: {
+        type: "object",
+        properties: {
+          deposit: { type: "string" },
+          monthlyRent: { type: "string" },
+        },
+      },
+      location: {
+        type: "object",
+        properties: {
+          district: { type: "string" },
+        },
       },
     },
   },
