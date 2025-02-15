@@ -99,36 +99,6 @@ export type RentSingleMultiFamilyResponse =
   RentResponse<RentSingleMultiFamilyItem>;
 export type RentMultiHouseholdResponse = RentResponse<RentMultiHouseholdItem>;
 
-export interface FrontenRent {
-  id: string;
-  buildingInfo: {
-    type: string;
-    area: string;
-  };
-  price: {
-    deposit: string;
-    monthlyRent: string;
-  };
-  location: {
-    district: string;
-  };
-}
-
-export interface FrontendRent {
-  id: string;
-  buildingInfo: {
-    type: string; // houseType
-    area: string; //totalFloorAr
-  };
-  price: {
-    deposit: string; //deposit
-    monthlyRent: string; //monthlyRent
-  };
-  location: {
-    district: string; //umdNm
-  };
-}
-
 export interface FrontendRentBase {
   id: string;
   price: {
