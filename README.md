@@ -1,36 +1,39 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## 기본 세팅
 
-First, run the development server:
+서버 실행
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 에서 실행
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## BFF API 서버 실행
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+yarn fastify
+```
 
-## Learn More
+http://localhost:5000 에서 실행
 
-To learn more about Next.js, take a look at the following resources:
+**swagger** http://localhost:5000/docs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`.env`
 
-## Deploy on Vercel
+**ESTATE_API_URL** = [국토교통부_단독/다가구 전월세 실거래가 자료](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15126472#/) 서비스 호출 url
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**LAWD_CD** = 지역코드 (ex.11110)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+// 각 지역별 코드 행정표준코드관리시스템(www.code.go.kr)의 법정동코드 10자리 중 앞 5자리
+
+**DEAL_YMF** = 실거래 자료의 계약연월 6자리 (ex.202502)
+
+
+`.env.secret`
+
+**ServiceKey** =  위의 공공데이터 API를 신청한 후 인증키(Deconding)를 지정
+

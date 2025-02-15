@@ -14,6 +14,12 @@ export default function Home() {
           매물 리스트 보러가기
         </button>
       </Link>
+      <br />
+      <Link href="/test">
+        <button className="px-6 py-3 bg-indigo-500 text-white rounded-lg shadow-md hover:bg-indigo-600 transition">
+          API 테스트 중...
+        </button>
+      </Link>
     </div>
   );
 }
