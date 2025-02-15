@@ -8,7 +8,7 @@ import fastifyEnv from "@fastify/env";
 import { envSchema } from "./config/env.schema";
 import { swaggerOptions, swaggerUiOptions } from "./config/swagger.config";
 import { defaultRoutes } from "./routes/default.routes";
-import { listingRoutes } from "./routes/listing.routes";
+import { rentRoutes } from "./routes/rent.routes";
 
 // Load environment variables
 dotenv.config({ path: ".env" });
@@ -25,7 +25,7 @@ async function buildServer() {
 
   // Register routes
   await app.register(defaultRoutes);
-  await app.register(listingRoutes);
+  await app.register(rentRoutes);
 
   return app;
 }
