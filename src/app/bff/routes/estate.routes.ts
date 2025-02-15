@@ -19,7 +19,6 @@ export async function estateRoutes(app: FastifyInstance) {
           (item, index) => ({
             id: `${item.dealYear}${item.dealMonth}${item.dealDay}-${index + 1}`,
             buildingInfo: {
-              year: item.buildYear,
               type: item.houseType,
               area: item.totalFloorAr,
             },

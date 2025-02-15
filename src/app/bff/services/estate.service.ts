@@ -15,6 +15,7 @@ export class EstateService {
           Accept: "application/json",
         },
       });
+
       const data = response.data.response.body;
 
       return { data: data };

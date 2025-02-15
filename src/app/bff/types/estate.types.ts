@@ -24,7 +24,6 @@ export interface EstateResponse {
 export interface FrontendEstate {
   id: string;
   buildingInfo: {
-    year: string;
     type: string;
     area: string;
   };
