@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function EstatePage() {
+export default function RentPage() {
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold">개쩌는 집 정보</h2>

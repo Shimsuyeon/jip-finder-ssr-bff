@@ -9,7 +9,7 @@ export default function Home() {
       </p>
 
       {/* ✅ listing 페이지로 이동하는 버튼 */}
-      <Link href="/estates">
+      <Link href="/rent">
         <button className="px-6 py-3 bg-indigo-500 text-white rounded-lg shadow-md hover:bg-indigo-600 transition">
           내집(후보) 시세 확인하기
         </button>
