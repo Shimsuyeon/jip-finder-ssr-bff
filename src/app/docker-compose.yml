@@ -8,8 +8,8 @@ services:
       - "3000:3000"
     depends_on:
       - fastify
-    environment:
-      - NODE_ENV=production
+    env_file:
+      - ../../.env # ✅ 루트 디렉토리에 있는 .env 파일 사용
 
   fastify:
     build:
@@ -17,5 +17,5 @@ services:
       dockerfile: src/app/bff/Dockerfile
     ports:
       - "5000:5000"
-    environment:
-      - NODE_ENV=production
+    env_file:
+      - ../../.env # ✅ 루트 디렉토리에 있는 .env 파일 사용
