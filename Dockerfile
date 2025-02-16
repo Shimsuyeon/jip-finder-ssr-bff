@@ -23,4 +23,4 @@ COPY --from=builder /app/public /app/public
 
 
 # 실행 명령어
-CMD ["yarn", "start"]
+CMD ["node", "server.js"]
