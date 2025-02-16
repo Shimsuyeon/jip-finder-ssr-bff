@@ -18,7 +18,10 @@ async function buildServer() {
   const app = fastify({ logger: false });
 
   // Register plugins
-  await app.register(cors, { origin: "*" });
+  await app.register(cors, {
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  });
   await app.register(fastifyEnv, { schema: envSchema, dotenv: true });
   await app.register(fastifySwagger, swaggerOptions);
   await app.register(fastifySwaggerUi, swaggerUiOptions);
@@ -33,7 +36,7 @@ async function buildServer() {
 async function startServer() {
   try {
     const app = await buildServer();
-    await app.listen({ port: 5000 });
+    await app.listen({ port: 5000, host: "0.0.0.0" });
     console.log("Server started on port 5000");
   } catch (err) {
     console.error("Error starting server:", err);

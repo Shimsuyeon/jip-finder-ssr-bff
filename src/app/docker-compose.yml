@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  nextjs:
+    build:
+      context: ../../ # ✅ 루트 디렉토리를 컨텍스트로 설정
+      dockerfile: src/app/Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - fastify
+    environment:
+      - NODE_ENV=production
+
+  fastify:
+    build:
+      context: ../../ # ✅ 루트 디렉토리를 컨텍스트로 설정
+      dockerfile: src/app/bff/Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
