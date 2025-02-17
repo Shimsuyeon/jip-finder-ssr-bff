@@ -31,7 +31,7 @@ export class RentService {
 
       return { data: data };
     } catch (error) {
-      throw new Error(`Failed to fetch listings: ${error}`);
+      throw new Error(`Failed to fetch listings: ${error} ${apiUrl}`);
     }
   }
 }

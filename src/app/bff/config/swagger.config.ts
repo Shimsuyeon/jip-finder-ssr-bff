@@ -5,7 +5,7 @@ export const swaggerOptions = {
       description: "My Description.",
       version: "1.0.0",
     },
-    host: "localhost:5000",
+    host: process.env.BASE_BFF_API_URL,
     schemes: ["http", "https"],
     consumes: ["application/json"],
     produces: ["application/json"],

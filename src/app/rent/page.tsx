@@ -9,7 +9,7 @@ import {
   FrontendRentMultiHousehold,
 } from "../bff/types/rent,types";
 
-const API_URL = "http://localhost:5000/rent/all";
+const API_URL = process.env.NEXT_PUBLIC_BASE_BFF_API_URL + "/rent/all";
 
 export default function RentPage() {
   type RentData = {
