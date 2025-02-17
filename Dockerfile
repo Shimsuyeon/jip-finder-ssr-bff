@@ -2,6 +2,9 @@
 FROM node:20-slim AS builder
 WORKDIR /app
 
+ARG NEXT_PUBLIC_BASE_BFF_API_URL
+ENV NEXT_PUBLIC_BASE_BFF_API_URL=${NEXT_PUBLIC_BASE_BFF_API_URL}
+
 # ✅ package.json과 yarn.lock만 복사 후 설치 (캐시 활용)
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile

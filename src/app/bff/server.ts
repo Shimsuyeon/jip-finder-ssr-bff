@@ -21,6 +21,8 @@ async function buildServer() {
   await app.register(cors, {
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, // Allow cookies/auth headers
   });
   await app.register(fastifyEnv, { schema: envSchema, dotenv: true });
   await app.register(fastifySwagger, swaggerOptions);

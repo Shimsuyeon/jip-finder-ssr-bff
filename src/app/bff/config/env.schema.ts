@@ -10,6 +10,8 @@ export const envSchema = {
     "APARTMENT",
     "MULTI_HOUSEHOLD",
     "SINGLE_MULTI_FAMILY",
+
+    "BASE_BFF_API_URL",
   ],
   properties: {
     ServiceKey: { type: "string" },
@@ -20,5 +22,6 @@ export const envSchema = {
     SINGLE_MULTI_FAMILY: { type: "string" },
     LAWD_CD: { type: "string" },
     DEAL_YMD: { type: "string" },
+    BASE_BFF_API_URL: { type: "string" },
   },
 };
