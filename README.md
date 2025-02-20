@@ -57,6 +57,13 @@ LAWD_CD = 지역코드 (ex.11110)
 DEAL_YMF = 실거래 자료의 계약연월 6자리 (ex.202502)
 ```
 
+
+`.env.secret`
+```bash
+ServiceKey =  공공데이터 회원가입 후 개인 인증키(Deconding)를 지정
+```
+
+
 ### 프로젝트 과정 추적
 
 이번 프로젝트는 진행 과정을 개발 블로그에 같이 기록하고 있습니다
@@ -64,7 +71,11 @@ DEAL_YMF = 실거래 자료의 계약연월 6자리 (ex.202502)
 1. 2025.02.16.
 [[개발][BFF 도전기] Next.js 구축, Fastify에 Swagger 안 붙는 문제 해결하기](https://developer-dreamer.tistory.com/172)
 
-`.env.secret`
-```bash
-ServiceKey =  공공데이터 회원가입 후 개인 인증키(Deconding)를 지정
-```
+2. 2025.02.18.
+[[개발][BFF 도전기] Fastify 서버 - 폴더 구조화](https://developer-dreamer.tistory.com/174)
+
+3. 2025.02.18.
+[[개발][BFF 도전기] Docker 이미지 빌드 - ECR로 push - EC2 pull해서 실행](https://developer-dreamer.tistory.com/173)
+
+4. 2025.02.20.
+[[개발][BFF 도전기] 부동산 공공데이터 API 뜯어보고 BFF API 설계하기](https://developer-dreamer.tistory.com/177)
